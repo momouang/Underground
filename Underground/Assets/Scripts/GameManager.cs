@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
             toggleMap = !toggleMap;
 
             Map.SetActive(toggleMap);
+            Cursor.lockState = CursorLockMode.None;
         }
     }
 }
