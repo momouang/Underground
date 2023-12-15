@@ -34,10 +34,10 @@ public class Item
         {
             default:
             case ItemType.Battery:
+            case ItemType.Shield:
                 return true;
             case ItemType.Flashlight:
             case ItemType.OysterCard:
-            case ItemType.Shield:
                 return false;
 
         }

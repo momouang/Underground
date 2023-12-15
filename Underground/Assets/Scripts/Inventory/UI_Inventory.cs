@@ -14,8 +14,7 @@ public class UI_Inventory : MonoBehaviour
 
     public void Awake()
     {
-        itemSlotContainer = transform.Find("itemSlotContainer");
-        
+        itemSlotContainer = transform.Find("itemSlotContainer");        
     }
 
     public void SetInventory(Inventory inventory)
@@ -52,7 +51,6 @@ public class UI_Inventory : MonoBehaviour
             Image image = itemSlotRectTransform.Find("Image").GetComponent<Image>();
             image.sprite = item.GetSprite();
             TextMeshProUGUI uiText = itemSlotRectTransform.Find("text").GetComponent<TextMeshProUGUI>();
-            Debug.Log(item.itemAmount);
             if(item.itemAmount > 1)
             {
                 uiText.text = item.itemAmount.ToString();

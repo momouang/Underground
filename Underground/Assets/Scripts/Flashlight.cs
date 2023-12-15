@@ -5,56 +5,78 @@ using UnityEngine.UI;
 
 public class Flashlight : MonoBehaviour
 {
+    public PlayerMovement player;
     public Light spotLight;
     public float lightAngle = 30f;
     public bool switchOn = false;
 
+    public bool PickedUp = false;
+
     [Header("Battery")]
     public Slider batterySlider;
-    public float powerTime = 180f;
+    public float maxValue = 180f;
+    public bool noBattery = false;
 
     private void Start()
     {
-        batterySlider.maxValue = powerTime;
+        batterySlider.maxValue = maxValue;
     }
+
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.C))
+        if(PickedUp)
+        {
+            gameObject.transform.position = player.spawnPoint.position;
+            gameObject.transform.SetParent(player.spawnPoint);
+            UseFlashLight();
+        }
+
+        if(switchOn)
+        {
+            batterySlider.value -= Time.deltaTime;
+        }
+
+        if(batterySlider.value <= 0)
+        {
+            TurnOffLight();
+            batterySlider.value = 0;
+            noBattery = true;
+        }
+    }
+
+    public void UseFlashLight()
+    {
+        if (Input.GetKeyDown(KeyCode.C))
         {
             switchOn = !switchOn;
 
-            if(switchOn)
+            if (switchOn)
             {
                 TurnOnLight();
             }
             else
             {
                 TurnOffLight();
-            }          
-        }
-
-        if(switchOn)
-        {
-            powerTime -= Time.deltaTime;
-            batterySlider.value -= Time.deltaTime;
-        }
-
-        if(powerTime <= 0)
-        {
-            TurnOffLight();
-            //Debug.Log("no battery");
-            batterySlider.value = 0;
+            }
         }
     }
 
     public void TurnOnLight()
     {
-        spotLight.spotAngle = lightAngle;
-
+        if(!noBattery)
+        {
+            spotLight.spotAngle = lightAngle;
+        }
     }
 
     public void TurnOffLight()
     {
         spotLight.spotAngle = 0;
+    }
+
+    public void Charging()
+    {
+        batterySlider.value = maxValue;
+        noBattery = false;
     }
 }

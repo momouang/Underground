@@ -46,6 +46,11 @@ public class Inventory
         onItemListChanged?.Invoke(this, EventArgs.Empty);
     }
 
+    internal void UseItem()
+    {
+        throw new NotImplementedException();
+    }
+
     internal void UseItem(object item)
     {
         throw new NotImplementedException();

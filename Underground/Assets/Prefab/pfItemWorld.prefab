@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 5448061900843647379}
   - component: {fileID: 5448061900843647374}
   - component: {fileID: 5448061900843647378}
-  - component: {fileID: 5448061900843647375}
   - component: {fileID: 3029532457938617431}
   m_Layer: 0
   m_Name: pfItemWorld
@@ -113,19 +112,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5448061900843647375
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5448061900843647380}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e265930599ac4444afb8e809c0f24d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  batteryCount: 0
 --- !u!114 &3029532457938617431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,3 +124,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a491e2c05f784874a855c8a0f63e3ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  item:
+    itemType: 0
+    itemAmount: 0
