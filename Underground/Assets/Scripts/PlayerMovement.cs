@@ -4,12 +4,23 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static event System.Action RestoreAllItem;
+
+    [Header("Main")]
     public CharacterController controller;
-    public float speed = 12f;
+    public float speed = 12f;   
+    public Transform spawnPoint;
+    public Transform respawnPoint;
+
+    [Header("Inventory")]
     public Inventory inventory;
     public Flashlight flashLight;
+    public Shield shield;
+    public bool isShielded = false;
     public GameObject flashLightObeject;
-    public Transform spawnPoint;
+
+    [Header("Enemy Attack")]
+    public bool attacked = false;
 
     [SerializeField]
     private UI_Inventory uiInventory;
@@ -32,8 +43,30 @@ public class PlayerMovement : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            inventory.UseItem(new Item { itemType = Item.ItemType.Battery, itemAmount = 1 });
+            inventory.UseItem(new Item { itemType = Item.ItemType.OysterCard, itemAmount = 3 });
         }
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            PlayerDead();
+        }
+
+        if(attacked)
+        {
+            inventory.UseItem(new Item { itemType = Item.ItemType.Shield, itemAmount = 1 });
+        }
+
+    }
+
+    public void PlayerDead()
+    {
+        flashLight.PickedUp = false;
+        shield.ShieldEquiped = false;
+        ItemWorld itemWorld = GetComponent<ItemWorld>();
+        RestoreAllItem?.Invoke();
+        inventory.ClearItem();
+        gameObject.transform.position = respawnPoint.transform.position;
+        gameObject.transform.rotation = respawnPoint.transform.rotation;
 
     }
 
@@ -48,12 +81,13 @@ public class PlayerMovement : MonoBehaviour
 
         if(other.CompareTag("Flashlight"))
         {
+            flashLightObeject.GetComponent<Collider>().enabled = false;
             inventory.Additem(itemWorld.GetItem());
             inventory.UseItem(new Item { itemType = Item.ItemType.Flashlight, itemAmount = 1 });
         }
     }
 
-    private void UseItem(Item item)
+    public void UseItem(Item item)
     {
         switch (item.itemType)
         {
@@ -68,9 +102,11 @@ public class PlayerMovement : MonoBehaviour
                 break;
 
             case Item.ItemType.OysterCard:
+                inventory.RemoveItem(new Item { itemType = Item.ItemType.OysterCard, itemAmount = 3 });
                 break;
 
             case Item.ItemType.Shield:
+                shield.ShieldEquiped = true;
                 inventory.RemoveItem(new Item { itemType = Item.ItemType.Shield, itemAmount = 1 });
                 break;
         }

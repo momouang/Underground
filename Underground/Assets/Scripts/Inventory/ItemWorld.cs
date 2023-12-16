@@ -8,9 +8,17 @@ public class ItemWorld : MonoBehaviour
     private Item item;
     private SpriteRenderer spriteRenderer;
 
-    private void Awake()
+    [SerializeField]
+    GameObject visual;
+
+    private void OnEnable()
     {
-        //spriteRenderer = GetComponent<SpriteRenderer>();
+        PlayerMovement.RestoreAllItem += RestoreItem;
+    }
+
+    private void OnDisable()
+    {
+        PlayerMovement.RestoreAllItem -= RestoreItem;
     }
 
     public void SetItem(Item item)
@@ -26,6 +34,14 @@ public class ItemWorld : MonoBehaviour
 
     public void DestroySelf()
     {
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        visual.SetActive(false);
+        gameObject.GetComponent<Collider>().enabled = false;
+    }
+
+    public void RestoreItem()
+    {
+        visual.SetActive(true);
+        gameObject.GetComponent<Collider>().enabled = true;
     }
 }

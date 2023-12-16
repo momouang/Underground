@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+[Serializable]
 public class Inventory 
 {
     public event EventHandler onItemListChanged;
@@ -23,25 +24,26 @@ public class Inventory
 
     public void Additem(Item item)
     {
+        Item temp = new Item(item);
         if (item.IsStackable())
         {
-            bool itemAlreadyInInventory = false;
+            bool itemAlreadyInInventory = false;           
             foreach (Item inventoryItem in itemlist)
             {
-                if (inventoryItem.itemType == item.itemType)
+                if (inventoryItem.itemType == temp.itemType)
                 {
-                    inventoryItem.itemAmount += item.itemAmount;
+                    inventoryItem.itemAmount += temp.itemAmount;
                     itemAlreadyInInventory = true;
                 }
             }
             if (!itemAlreadyInInventory)
             {
-                itemlist.Add(item);
+                itemlist.Add(temp);
             }
         }
         else
         {
-            itemlist.Add(item);
+            itemlist.Add(temp);
         }
         onItemListChanged?.Invoke(this, EventArgs.Empty);
     }
@@ -78,6 +80,12 @@ public class Inventory
         {
             itemlist.Remove(item);
         }
+        onItemListChanged?.Invoke(this, EventArgs.Empty);
+    }
+
+    public void ClearItem()
+    {
+        itemlist = new List<Item>();
         onItemListChanged?.Invoke(this, EventArgs.Empty);
     }
 

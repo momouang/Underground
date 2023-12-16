@@ -7,7 +7,7 @@ public class Map : MonoBehaviour
 {
     public GameObject[] pinImage;
     GameObject selectedPin;
-    public Canvas parentCanvas;
+    public GameObject parentCanvas;
     public bool clicked = false;
 
     public Transform previewPin;

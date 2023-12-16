@@ -16,6 +16,18 @@ public class Item
     public ItemType itemType;
     public int itemAmount;
 
+    public Item()
+    {
+        itemType = ItemType.Flashlight;
+        itemAmount = 1;
+    }
+
+    public Item(Item item)
+    {
+        itemType = item.itemType;
+        itemAmount = item.itemAmount;
+    }
+
     public Sprite GetSprite()
     {
         switch (itemType)
