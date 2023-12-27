@@ -109,12 +109,7 @@ public class EnemyAI : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             Debug.Log("Attacked");
-            playerScript.attacked = true;
-
-            if(!playerScript.isShielded)
-            {
-                playerScript.PlayerDead();
-            }
+            playerScript.BeAttacked();
         }
     }
 

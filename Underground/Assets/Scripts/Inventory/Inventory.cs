@@ -60,6 +60,7 @@ public class Inventory
 
     public void RemoveItem(Item item)
     {
+        //Debug.Log("Remove type:" + item.itemType + "," + item.itemAmount );
         if(item.IsStackable())
         {
             Item itemInInventory = null;
@@ -67,6 +68,7 @@ public class Inventory
             {
                 if(inventoryItem.itemType == item.itemType)
                 {
+                    //Debug.Log("inventory item amount found:" + inventoryItem.itemAmount);
                     inventoryItem.itemAmount -= item.itemAmount;
                     itemInInventory = inventoryItem;
                 }

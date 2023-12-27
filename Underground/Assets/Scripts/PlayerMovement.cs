@@ -15,7 +15,6 @@ public class PlayerMovement : MonoBehaviour
     [Header("Inventory")]
     public Inventory inventory;
     public Flashlight flashLight;
-    public Shield shield;
     public bool isShielded = false;
     public GameObject flashLightObeject;
 
@@ -43,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            inventory.UseItem(new Item { itemType = Item.ItemType.OysterCard, itemAmount = 3 });
+            UseItem(new Item { itemType = Item.ItemType.OysterCard, itemAmount = 3 });
         }
 
         if (Input.GetKeyDown(KeyCode.Z))
@@ -51,17 +50,25 @@ public class PlayerMovement : MonoBehaviour
             PlayerDead();
         }
 
-        if(attacked)
-        {
-            inventory.UseItem(new Item { itemType = Item.ItemType.Shield, itemAmount = 1 });
-        }
+    }
 
+    public void BeAttacked()
+    {
+        if(isShielded)
+        {
+            UseItem(new Item { itemType = Item.ItemType.Shield, itemAmount = 1 });
+            //play animation
+        }
+        else
+        {
+            PlayerDead();
+        }
     }
 
     public void PlayerDead()
     {
         flashLight.PickedUp = false;
-        shield.ShieldEquiped = false;
+        isShielded = false;
         ItemWorld itemWorld = GetComponent<ItemWorld>();
         RestoreAllItem?.Invoke();
         inventory.ClearItem();
@@ -83,7 +90,14 @@ public class PlayerMovement : MonoBehaviour
         {
             flashLightObeject.GetComponent<Collider>().enabled = false;
             inventory.Additem(itemWorld.GetItem());
-            inventory.UseItem(new Item { itemType = Item.ItemType.Flashlight, itemAmount = 1 });
+            UseItem(new Item { itemType = Item.ItemType.Flashlight, itemAmount = 1 });
+        }
+
+        if(other.CompareTag("Shield"))
+        {
+            isShielded = true;
+            inventory.Additem(itemWorld.GetItem());
+            itemWorld.DestroySelf();
         }
     }
 
@@ -106,7 +120,7 @@ public class PlayerMovement : MonoBehaviour
                 break;
 
             case Item.ItemType.Shield:
-                shield.ShieldEquiped = true;
+                isShielded = false;
                 inventory.RemoveItem(new Item { itemType = Item.ItemType.Shield, itemAmount = 1 });
                 break;
         }

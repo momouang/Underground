@@ -335,7 +335,6 @@
 "Assets/Scripts/PinScript.cs"
 "Assets/Scripts/PlayerMovement.cs"
 "Assets/Scripts/Reveal.cs"
-"Assets/Scripts/Shield.cs"
 -langversion:9.0
 
 /deterministic

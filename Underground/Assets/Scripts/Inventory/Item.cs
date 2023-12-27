@@ -47,9 +47,9 @@ public class Item
             default:
             case ItemType.Battery:
             case ItemType.Shield:
+            case ItemType.OysterCard:
                 return true;
             case ItemType.Flashlight:
-            case ItemType.OysterCard:
                 return false;
 
         }
