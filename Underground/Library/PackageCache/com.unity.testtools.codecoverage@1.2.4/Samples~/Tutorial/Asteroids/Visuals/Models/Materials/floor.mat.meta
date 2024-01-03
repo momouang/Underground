@@ -1,8 +1,15 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream:Underground/Library/PackageCache/com.unity.testtools.codecoverage@1.2.4/Samples~/Tutorial/Asteroids/Visuals/Models/Materials/floor.mat.meta
 <<<<<<<< Updated upstream:Underground/Library/PackageCache/com.unity.timeline@1.6.5/Samples~/GameplaySequenceDemo/Materials/Unitydark.mat.meta
 guid: 5c0deec9bedfc4429aa89893ffaf94b1
 ========
 guid: 615ae7cf396c55949b29746d325ab28f
+=======
+<<<<<<<< Updated upstream:Underground/Library/PackageCache/com.unity.testtools.codecoverage@1.2.4/Samples~/Tutorial/Asteroids/Visuals/Models/Materials/light.mat.meta
+guid: bc2bca7765b39a842b9c2d6f48677561
+========
+guid: f1b470bc71bc67a4eba574d02ff7acf7
+>>>>>>> Stashed changes:Assets/Resources/Materials/floor.mat.meta
 >>>>>>>> Stashed changes:Underground/Library/PackageCache/com.unity.testtools.codecoverage@1.2.4/Samples~/Tutorial/Asteroids/Visuals/Models/Materials/floor.mat.meta
 NativeFormatImporter:
   externalObjects: {}
