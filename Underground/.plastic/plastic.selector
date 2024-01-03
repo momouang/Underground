@@ -1,4 +1,0 @@
-repository "Underground@syes0923momo@cloud"
-  path "/"
-    br "/main"
-    co "/main"
