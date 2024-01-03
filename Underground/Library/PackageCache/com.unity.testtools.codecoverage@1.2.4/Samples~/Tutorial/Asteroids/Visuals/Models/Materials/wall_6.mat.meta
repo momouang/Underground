@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream:Underground/Library/PackageCache/com.unity.testtools.codecoverage@1.2.4/Samples~/Tutorial/Asteroids/Visuals/Models/Materials/wall_6.mat.meta
 guid: 17b88ff3e105f654ebfb4d28550805ff
+=======
+guid: d4fe91f99935b6c4b95ac3f9ec026934
+>>>>>>> Stashed changes:Assets/Resources/Materials/wall_6.mat.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 2100000
