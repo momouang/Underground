@@ -11,10 +11,12 @@ public class EnemyAI : MonoBehaviour
     public Transform player;
 
     public EnemyState enemyState;
+    public bool beAttacked = false;
 
     public Transform[] wayPoints;
     int wayPointIndex = 0;
     Vector3 target;
+    public float chaseTimer = 10f;
 
 
     private void Start()
@@ -44,10 +46,11 @@ public class EnemyAI : MonoBehaviour
             IterateWayPointIndex();
         }
                 
-        if (distance <= 10)
+        if (distance <= 10 && chaseTimer > 5f )
         {
             UpdateBehaviour(EnemyState.Chase);
 
+            
             if(distance <= 1)
             {
                 UpdateBehaviour(EnemyState.Attack);
@@ -60,6 +63,12 @@ public class EnemyAI : MonoBehaviour
         else
         {
             UpdateBehaviour(EnemyState.Patrol);
+        }
+
+
+        if (beAttacked)
+        {
+            chaseTimer += Time.deltaTime;
         }
     }
 
@@ -102,14 +111,18 @@ public class EnemyAI : MonoBehaviour
 
     private void Attack()
     {
+       
         //play attacking animation
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if(other.CompareTag("Player") && !beAttacked)
         {
             playerScript.BeAttacked();
+            beAttacked = true;
+            chaseTimer = 0;
+            //chaseTimer += Time.deltaTime;
         }
     }
 

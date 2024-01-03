@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: 387f4b90a14074c4f9d2edfabca7efdd
+<<<<<<<< Updated upstream:Underground/Library/PackageCache/com.unity.timeline@1.6.5/Samples~/GameplaySequenceDemo/Materials/Unitydark.mat.meta
+guid: 9b66408179a4e4ad686fb6489121b19b
+========
+guid: 615ae7cf396c55949b29746d325ab28f
+>>>>>>>> Stashed changes:Underground/Library/PackageCache/com.unity.testtools.codecoverage@1.2.4/Samples~/Tutorial/Asteroids/Visuals/Models/Materials/floor.mat.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 2100000
