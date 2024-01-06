@@ -29,6 +29,7 @@ public class Map : MonoBehaviour
     public void SelectFrame(int selectFrame)
     {
         selectedFrame[selectFrame].SetActive(true);
+
     }
 
     public void SpawnImage()

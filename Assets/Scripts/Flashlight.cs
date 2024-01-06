@@ -9,9 +9,11 @@ public class Flashlight : MonoBehaviour
     public AudioManager audioManager;
     public PlayerMovement player;
     public Light spotLight;
+    public Transform spotLightPostion;
     public float lightAngle = 30f;
     public bool switchOn = false;
     public bool PickedUp = false;
+    public GameObject image;
     public Transform flashLightSpawnPoint;
 
     [Header("Battery")]
@@ -19,6 +21,9 @@ public class Flashlight : MonoBehaviour
     public Slider batterySlider;
     public float maxValue = 180f;
     public bool noBattery = false;
+
+    [Header("Enemy Protection")]
+    [SerializeField] LayerMask enemyMask;
 
     private void Start()
     {
@@ -29,9 +34,11 @@ public class Flashlight : MonoBehaviour
 
     private void Update()
     {
-        if(PickedUp)
+
+        if (PickedUp)
         {
             batterySliderUI.SetActive(true);
+            image.SetActive(false);
             gameObject.transform.position = player.spawnPoint.position;
             gameObject.transform.rotation= player.spawnPoint.rotation;
             gameObject.transform.SetParent(player.spawnPoint);
@@ -40,6 +47,7 @@ public class Flashlight : MonoBehaviour
         else
         {
             batterySliderUI.SetActive(false);
+            image.SetActive(true);
             gameObject.transform.position = flashLightSpawnPoint.position;
             gameObject.transform.rotation = flashLightSpawnPoint.rotation;
             TurnOffLight();
@@ -47,6 +55,13 @@ public class Flashlight : MonoBehaviour
 
         if(switchOn)
         {
+            if(Physics.Raycast(spotLightPostion.position, spotLightPostion.TransformDirection(Vector3.forward), out RaycastHit hit, 20f, enemyMask))
+            {
+                Debug.DrawRay(spotLightPostion.position, spotLightPostion.TransformDirection(Vector3.forward) * hit.distance, Color.red);
+                EnemyAI enemy = hit.collider.GetComponent<EnemyAI>();
+
+                enemy.ishitbyFlashlight = true;
+            }
             batterySlider.value -= Time.deltaTime;
         }
 

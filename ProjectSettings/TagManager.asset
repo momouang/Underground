@@ -4,18 +4,20 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Flashlight
   - Destroyable
+  - Flashlight
   - Shield
+  - OysterCard
+  - Gate
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Map
+  - Ground
   - Water
   - UI
-  - Revealed Camera
-  - PP
+  - Enemy
+  - 
   - 
   - 
   - 

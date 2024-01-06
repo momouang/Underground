@@ -57,3 +57,81 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: Shield Sound
+    clip: {fileID: 8300000, guid: e239ea1ebf155451eaefa2d78db84de3, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PowerBoxDeath Sound
+    clip: {fileID: 8300000, guid: 29fb06efedd98400380893c763edb3f8, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: OysterCard Sound
+    clip: {fileID: 8300000, guid: ff7131082c2f64e01ad8af0fb09ba701, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: OpenMap Sound
+    clip: {fileID: 8300000, guid: 151b484f005464375a686c9802efed99, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Marking Sound
+    clip: {fileID: 8300000, guid: fbacad879def74df7bd0566ad6ad5d41, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PlayerFootstep Sound
+    clip: {fileID: 8300000, guid: 3065e0835ad614444917391c8d2d45bb, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: ItemPickup Sound
+    clip: {fileID: 8300000, guid: 75eed2fa98e6a4dcf9a49776545c0e16, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: EnemyLaugh Sound
+    clip: {fileID: 8300000, guid: 780e3f7dc07db44d98973be9476a968e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: GateOpen Sound
+    clip: {fileID: 8300000, guid: d7155f82bad874757be8514b8fb8b8b6, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: GateClose Sound
+    clip: {fileID: 8300000, guid: 9008cd468206a4b1889cd01ad560a6a9, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: TakeOutCard Sound
+    clip: {fileID: 8300000, guid: 15d219532e8b14bea95fd2c2d019f336, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: BG Sound
+    clip: {fileID: 8300000, guid: bbd21f238756942bb88715d9f019ad2b, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: EnemyScream Sound
+    clip: {fileID: 8300000, guid: 9ad03530f83c84c8f8f0e4c3db043d52, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}

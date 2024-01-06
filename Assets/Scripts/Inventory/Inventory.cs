@@ -11,15 +11,12 @@ public class Inventory
     private List<Item> itemlist;
     private Action<Item> useItemAction;
 
+    public int oysterCardAmount;
+
     public Inventory(Action<Item> useItemAction)
     {
         this.useItemAction = useItemAction;
         itemlist = new List<Item>();
-
-        //Additem(new Item { itemType = Item.ItemType.Battery, itemAmount = 1 });
-        //Additem(new Item { itemType = Item.ItemType.Flashlight, itemAmount = 1 });
-        //Additem(new Item { itemType = Item.ItemType.OysterCard, itemAmount = 1 });
-        //Additem(new Item { itemType = Item.ItemType.Shield, itemAmount = 1 });
     }
 
     public void Additem(Item item)
@@ -34,6 +31,11 @@ public class Inventory
                 {
                     inventoryItem.itemAmount += temp.itemAmount;
                     itemAlreadyInInventory = true;
+                }
+
+                if(temp.itemType == Item.ItemType.OysterCard)
+                {
+                    oysterCardAmount += item.itemAmount = 3;
                 }
             }
             if (!itemAlreadyInInventory)

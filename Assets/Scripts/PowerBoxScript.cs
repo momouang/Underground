@@ -12,7 +12,7 @@ public class PowerBoxScript : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             gameManager.GameOver();
-            audioManager.Play("PowerBoxDead Sound");
+            audioManager.Play("PowerBoxDeath Sound");
         }
     }
 }

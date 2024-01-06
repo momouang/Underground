@@ -5,8 +5,11 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
+    public AudioManager audioManager;
+
     [Header("Main")]
-    private NavMeshAgent agent;
+    public NavMeshAgent agent;
+    Animator anim;
     public PlayerMovement playerScript;
     public Transform player;
 
@@ -18,13 +21,17 @@ public class EnemyAI : MonoBehaviour
     Vector3 target;
     public float chaseTimer = 10f;
 
+    [Header("Flashlight Attack")]
+    public Flashlight flashlight;
+    public bool ishitbyFlashlight = false;
+
 
     private void Start()
     {
         target = wayPoints[wayPointIndex].position;
-        agent = GetComponent<NavMeshAgent>();
+        agent = gameObject.GetComponent<NavMeshAgent>();
+        anim = gameObject.GetComponent<Animator>();
         Patrol();
-
     }
 
     public enum EnemyState
@@ -40,7 +47,6 @@ public class EnemyAI : MonoBehaviour
         gameObject.transform.LookAt(targetPosition);
         float distance = Vector3.Distance(player.transform.position,gameObject.transform.position);
 
-        
         if (Vector3.Distance(transform.position, target) < 1f)
         {
             IterateWayPointIndex();
@@ -54,8 +60,10 @@ public class EnemyAI : MonoBehaviour
             if(distance <= 1)
             {
                 UpdateBehaviour(EnemyState.Attack);
+
                 if(playerScript.attacked)
                 {
+                    chaseTimer += Time.deltaTime;
                     UpdateBehaviour(EnemyState.Patrol);
                 }
             }
@@ -65,11 +73,18 @@ public class EnemyAI : MonoBehaviour
             UpdateBehaviour(EnemyState.Patrol);
         }
 
-
-        if (beAttacked)
+        if(ishitbyFlashlight)
         {
-            chaseTimer += Time.deltaTime;
+            audioManager.Play("EnemyScream Sound");
+            anim.SetBool("isShocked", true);
+            agent.speed--;
+            StartCoroutine(CoolDown());
         }
+        else
+        {
+            agent.speed = 5;
+        }
+
     }
 
     private void UpdateBehaviour(EnemyState state)
@@ -111,7 +126,7 @@ public class EnemyAI : MonoBehaviour
 
     private void Attack()
     {
-       
+        audioManager.Play("EnemyLaugh Sound");
         //play attacking animation
     }
 
@@ -122,8 +137,15 @@ public class EnemyAI : MonoBehaviour
             playerScript.BeAttacked();
             beAttacked = true;
             chaseTimer = 0;
-            //chaseTimer += Time.deltaTime;
         }
+    }
+
+
+    IEnumerator CoolDown()
+    {
+        yield return new WaitForSeconds(5);
+        ishitbyFlashlight = false;
+        anim.SetBool("isShocked", false);
     }
 
 }
