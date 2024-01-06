@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
         if(!isStarting && Input.GetKeyDown(KeyCode.Return))
         {
             isStarting = true;
-            transAnim.SetBool("isTransitting", true);
+            transAnim.Play("Transitions");
 
             StartCoroutine(StartGame());
         }
@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
 
     public void CallTransition()
     {
-        transAnim.SetBool("isTransitting", true);
+        transAnim.Play("Transitions");
     }
 
 
@@ -58,7 +58,6 @@ public class GameManager : MonoBehaviour
     {
         StartCoroutine(CloseOverlay());
         yield return new WaitForSeconds(3);
-        transAnim.SetBool("isTransitting", false);
     }
 
     IEnumerator CloseOverlay()

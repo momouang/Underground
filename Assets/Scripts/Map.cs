@@ -26,10 +26,13 @@ public class Map : MonoBehaviour
         selectedPin = pinImage[select];
     }
 
-    public void SelectFrame(int selectFrame)
+    public void SelectFrame(int selectFrames)
     {
-        selectedFrame[selectFrame].SetActive(true);
-
+        foreach(GameObject frames in selectedFrame)
+        {
+            frames.SetActive(false);
+        }
+        selectedFrame[selectFrames].SetActive(true);
     }
 
     public void SpawnImage()

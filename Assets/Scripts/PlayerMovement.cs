@@ -37,6 +37,9 @@ public class PlayerMovement : MonoBehaviour
     public ParticleSystem shieldParticle;
     public GameManager gameManager;
 
+    [Header("Others")]
+    public GameCompleteTrigger gameCompleteTrigger;
+
     [SerializeField]
     private UI_Inventory uiInventory;
 
@@ -89,6 +92,11 @@ public class PlayerMovement : MonoBehaviour
             flashLight.Charging();
             audioManager.Play("Charge Sound");
         }
+
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            PlayerDead();
+        }
     }
 
     public void Move()
@@ -130,6 +138,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void PlayerDead()
     {
+        gameCompleteTrigger.gameCompleted = false;
         gameManager.gameStart = true;
         getOyster = false;
         inventory.oysterCardAmount = 0;
@@ -143,7 +152,14 @@ public class PlayerMovement : MonoBehaviour
         gameObject.transform.rotation = respawnPoint.transform.rotation;
         gameManager.gameoverOverlay.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
+        Debug.Log("player dead");
 
+    }
+
+    public void ReturnPlayer()
+    {
+        gameObject.transform.position = respawnPoint.transform.position;
+        gameObject.transform.rotation = respawnPoint.transform.rotation;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -182,7 +198,6 @@ public class PlayerMovement : MonoBehaviour
                 UseItem(new Item { itemType = Item.ItemType.OysterCard, itemAmount = 3 });
             }
         }
-
 
         if(other.CompareTag("Shield"))
         {
